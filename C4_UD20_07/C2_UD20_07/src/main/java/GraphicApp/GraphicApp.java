@@ -4,14 +4,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 
 public class GraphicApp extends JFrame{
@@ -24,7 +20,6 @@ public class GraphicApp extends JFrame{
 	private JTextField textFieldResult;
 	private JButton btnMakeConversion ;
 	private static boolean eurosPtas = true;
-	
 
 	/*Constructor*/
 	public GraphicApp() {
@@ -71,30 +66,14 @@ public class GraphicApp extends JFrame{
 		
 		/*Creation, definition of dimensions and added to the panel of the buttons*/		
 		JButton btnChangeConversion = new JButton("Cambiar");
-		btnChangeConversion.setBounds(270, 78, 89, 23);
+		btnChangeConversion.setBounds(286, 78, 89, 23);
 		contentPane.add(btnChangeConversion);
 		
 		btnMakeConversion = new JButton("Euros a ptas");
 		btnMakeConversion.setBounds(157, 78, 107, 23);
 		contentPane.add(btnMakeConversion);
 		
-		
-		JButton btnClean = new JButton("Borrar");
-		btnClean.setBounds(365, 78, 80, 23);
-		contentPane.add(btnClean);
-		
-		/*Creation of the buttons listeners*/	
-		
-		btnClean.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textFieldInput.setText(null);
-				textFieldResult.setText(null);
-			
-			}
-		});
-		
-		
-		
+		/*Creation of the buttons listeners*/										
 		btnChangeConversion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) { //Change the text of the textfield 
 				
@@ -106,8 +85,6 @@ public class GraphicApp extends JFrame{
 				eurosPtas =! eurosPtas;		
 			}
 		});
-		
-	
 		
 		btnMakeConversion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {//Converts and save the result in the result textfield in a specific format
@@ -123,7 +100,6 @@ public class GraphicApp extends JFrame{
 				textFieldResult.setText(formatted);
 			}
 		});
-	
 		
 	}
 }
