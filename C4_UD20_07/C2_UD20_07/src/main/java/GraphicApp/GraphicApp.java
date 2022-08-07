@@ -27,7 +27,7 @@ public class GraphicApp extends JFrame{
 		/*Definition of the window */
 		
 		
-		setTitle("Ventana con interaccion");//PopUp window title
+		setTitle("Calculadora cambio de monedas");//PopUp window title
 		
 		/* X Y coordinates of the application and its height and length */
 		setBounds(700, 200, 518, 181);
@@ -88,11 +88,11 @@ public class GraphicApp extends JFrame{
 		
 		btnMakeConversion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {//Converts and save the result in the result textfield in a specific format
-				Double r = 0.0;
+				Double r = Double.parseDouble(textFieldInput.getText());
 				if(eurosPtas) {
-					 r =	Double.parseDouble(textFieldInput.getText()) * 166.386;
+					 r *= 166.386;
 				}else {
-					r = Double.parseDouble(textFieldInput.getText()) / 166.386;
+					r /= 166.386;
 				}
 			   
 				DecimalFormat df = new DecimalFormat("#.####");
