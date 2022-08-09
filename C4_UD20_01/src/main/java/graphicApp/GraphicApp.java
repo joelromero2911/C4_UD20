@@ -8,6 +8,8 @@ import javax.swing.border.Border;
 public class GraphicApp extends JFrame{
 	// Attributes.
 	private JPanel contentPane;
+	private JTextField textField;
+	private JTextField textField_1;
 	
 	/**
 	 * Default constructor for 'GraphicApp'.
@@ -30,66 +32,40 @@ public class GraphicApp extends JFrame{
 		
 		// Creation of a JLabel.
 		JLabel label = new JLabel("Etiqueta!");
-		label.setBounds(60, 20, 187, 52);
+		label.setBounds(10, 11, 187, 52);
 		label.setBorder(border);
-//		label.addComponentListener(new ComponentAdapter() 
-//		{ 
-//		        public void componentResized(ComponentEvent evt) {
-//		        	label.setBounds(getY(), getX(), getWidth(), getHeight());
-//		        }
-//		});
-		label.addMouseListener(new MouseListener() {
-			
-			public void isLeftMouseButton(MouseEvent anEvent) {
-				label.setBounds(60, 20, 200, 70);
-			}
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
 		contentPane.add(label);
 		
-		// Creation of a JSlider for control the JLabel.
-		JSlider slider = new JSlider();
-		slider.setSnapToTicks(true);
-		slider.setPaintTicks(true);
-		slider.setPaintLabels(true);
-		slider.setMinimum(1);
-		slider.setValue(1);
-		slider.setMaximum(5);
-		slider.setBounds(60, 342, 356, 26);
-//		slider.addChangeListener(new ChangeListener() {
-//			public void stateChanged(ChangeEvent e) {
-//				System.out.println("Slider2: " + slider2.getValue());
-//			}
-//		});
-		contentPane.add(slider);
+		// Width
+		textField = new JTextField("187");
+		textField.setBounds(111, 372, 86, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Ancho");
+		lblNewLabel.setBounds(55, 375, 46, 14);
+		contentPane.add(lblNewLabel);
+		
+		// Height
+		textField_1 = new JTextField("52");
+		textField_1.setColumns(10);
+		textField_1.setBounds(319, 372, 86, 20);
+		contentPane.add(textField_1);
+		
+		JLabel lblAlto = new JLabel("Alto");
+		lblAlto.setBounds(263, 375, 46, 14);
+		contentPane.add(lblAlto);
+		
+		// Action button
+		JButton btnNewButton = new JButton("Cambiar");
+		btnNewButton.setBounds(185, 403, 89, 23);
+		contentPane.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int x = Integer.parseInt(textField.getText());
+				int y = Integer.parseInt(textField_1.getText());
+				label.setBounds(10, 11, x, y);
+			}
+		});
 	}
 }
