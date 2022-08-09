@@ -16,15 +16,17 @@ public class GraphicApp extends JFrame{
 	private JToggleButton tempButton =  new JToggleButton();
 	private int cardsShowed = 0;
 	private int guessedPairs = 0;
-	
+	private int tries =0;
+	private JLabel lblTriesCounter;	
+	private JLabel lblNewLabel;
 	/**
 	 * Default constructor for 'GraphicApp'.
 	 */
 	public GraphicApp() {
 		
 		// Parameters of the main window.
-		setTitle("09");
-		setBounds(400, 200, 479, 448);
+		setTitle("Juego de formar Parejas");
+		setBounds(400, 200, 479, 473);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 		
@@ -34,85 +36,95 @@ public class GraphicApp extends JFrame{
 		setContentPane(contentPane);
 		
 		// Components
+		/*Creation, definition of dimensions and added to the panel of the JTogglebuttons*/		
 		JToggleButton toggle0 = new JToggleButton();
-		toggle0.setBounds(21, 11, 99, 87);
+		toggle0.setBounds(18, 36, 99, 87);
 		toggle0.setSelected(true);
 		contentPane.add(toggle0);
 		
 		JToggleButton toggle1 = new JToggleButton();
-		toggle1.setBounds(130, 11, 99, 87);
+		toggle1.setBounds(127, 36, 99, 87);
 		toggle1.setSelected(true);
 		contentPane.add(toggle1);
 		
 		JToggleButton toggle2 = new JToggleButton();
-		toggle2.setBounds(239, 11, 99, 87);
+		toggle2.setBounds(236, 36, 99, 87);
 		toggle2.setSelected(true);
 		contentPane.add(toggle2);
 		
 		JToggleButton toggle3 = new JToggleButton();
-		toggle3.setBounds(348, 11, 99, 87);
+		toggle3.setBounds(345, 36, 99, 87);
 		toggle3.setSelected(true);
 		contentPane.add(toggle3);
 		
 		JToggleButton toggle4 = new JToggleButton();
-		toggle4.setBounds(21, 109, 99, 87);
+		toggle4.setBounds(18, 134, 99, 87);
 		toggle4.setSelected(true);
 		contentPane.add(toggle4);
 		
 		JToggleButton toggle5 = new JToggleButton();
-		toggle5.setBounds(130, 109, 99, 87);
+		toggle5.setBounds(127, 134, 99, 87);
 		toggle5.setSelected(true);
 		contentPane.add(toggle5);
 		
 		JToggleButton toggle6 = new JToggleButton();
-		toggle6.setBounds(239, 109, 99, 87);
+		toggle6.setBounds(236, 134, 99, 87);
 		toggle6.setSelected(true);
 		contentPane.add(toggle6);
 		
 		JToggleButton toggle7 = new JToggleButton();
-		toggle7.setBounds(348, 109, 99, 87);
+		toggle7.setBounds(345, 134, 99, 87);
 		toggle7.setSelected(true);
 		contentPane.add(toggle7);
 		
 		JToggleButton toggle8 = new JToggleButton();
-		toggle8.setBounds(21, 207, 99, 87);
+		toggle8.setBounds(18, 232, 99, 87);
 		toggle8.setSelected(true);
 		contentPane.add(toggle8);
 		
 		JToggleButton toggle9 = new JToggleButton();
-		toggle9.setBounds(130, 207, 99, 87);
+		toggle9.setBounds(127, 232, 99, 87);
 		toggle9.setSelected(true);
 		contentPane.add(toggle9);
 		
 		JToggleButton toggle10 = new JToggleButton();
-		toggle10.setBounds(239, 207, 99, 87);
+		toggle10.setBounds(236, 232, 99, 87);
 		toggle10.setSelected(true);
 		contentPane.add(toggle10);
 		
 		JToggleButton toggle11 = new JToggleButton();
-		toggle11.setBounds(348, 207, 99, 87);
+		toggle11.setBounds(345, 232, 99, 87);
 		toggle11.setSelected(true);
 		contentPane.add(toggle11);
 		
 		JToggleButton toggle12 = new JToggleButton();
-		toggle12.setBounds(21, 305, 99, 87);
+		toggle12.setBounds(18, 330, 99, 87);
 		toggle12.setSelected(true);
 		contentPane.add(toggle12);
 		
 		JToggleButton toggle13 = new JToggleButton();
-		toggle13.setBounds(130, 305, 99, 87);
+		toggle13.setBounds(127, 330, 99, 87);
 		toggle13.setSelected(true);
 		contentPane.add(toggle13);
 		
 		JToggleButton toggle14 = new JToggleButton();
-		toggle14.setBounds(239, 305, 99, 87);
+		toggle14.setBounds(236, 330, 99, 87);
 		toggle14.setSelected(true);
 		contentPane.add(toggle14);
 		
 		JToggleButton toggle15 = new JToggleButton();
-		toggle15.setBounds(348, 305, 99, 87);
+		toggle15.setBounds(345, 330, 99, 87);
 		toggle15.setSelected(true);
 		contentPane.add(toggle15);
+		
+		/*Definition of dimensions and added to the panel of the labels*/		
+		lblNewLabel = new JLabel("Intentos:");
+		lblNewLabel.setBounds(192, 9, 59, 14);
+		contentPane.add(lblNewLabel);
+		
+		lblTriesCounter = new JLabel("0");
+		lblTriesCounter.setBounds(245, 9, 46, 14);
+		contentPane.add(lblTriesCounter);
 		
 		// Arrays that will be used along the code.
 		JToggleButton[] toggleButtons = {toggle0, toggle1, toggle2, toggle3, toggle4, toggle5, toggle6, toggle7, toggle8, toggle9, toggle10, toggle11, toggle12, toggle13, toggle14, toggle15};
@@ -266,16 +278,22 @@ public class GraphicApp extends JFrame{
 					
 					// If the used got all the pairs, a pop up will show telling that the game is finished.
 					if(guessedPairs == 8) {
-						JOptionPane.showMessageDialog(null, "Has acabado el juego!!");
+						JOptionPane.showMessageDialog(null, "Has acabado el juego en "+tries+" intentos!!");
 					}
 
-					btn.setVisible(false); // Makes disappear the guessed pair.
+					btn.setVisible(false); // Makes disappear the guessed pair && the tries counter labels.
 					tempButton.setVisible(false);
+					lblTriesCounter.setVisible(false);
+					lblNewLabel.setVisible(false);
 			}
 			cardsShowed ++;
 			
 			// When 2 buttons have been selected the following block of code its triggered.
 			if(cardsShowed == 2) {
+				
+				//Add 1 try to the tries counter and reflects it on the screen
+				tries++; 
+				lblTriesCounter.setText(String.valueOf(tries));
 				
 				// Disable all buttons to prevent the user from bugging the GraphicApp.
 				for (Component c : contentPane.getComponents()) {

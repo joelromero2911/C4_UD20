@@ -32,7 +32,7 @@ public class GraphicApp extends JFrame{
 		/*Definition of the window */
 		
 		
-		setTitle("Ventana con interaccion");//PopUp window title
+		setTitle("Calculadora cambio de monedas");//PopUp window title
 		
 		/* X Y coordinates of the application and its height and length */
 		setBounds(700, 200, 518, 181);
@@ -111,16 +111,24 @@ public class GraphicApp extends JFrame{
 		
 		btnMakeConversion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {//Converts and save the result in the result textfield in a specific format
-				Double r = 0.0;
-				if(eurosPtas) {
-					 r =	Double.parseDouble(textFieldInput.getText()) * 166.386;
-				}else {
-					r = Double.parseDouble(textFieldInput.getText()) / 166.386;
+				
+				try { 
+					Double r = Double.parseDouble(textFieldInput.getText());
+					
+					if(eurosPtas) {
+						 r  *= 166.386;
+					}else {
+						r /= 166.386;
+					}
+					DecimalFormat df = new DecimalFormat("#.####");
+					String formatted = df.format(r); 
+					textFieldResult.setText(formatted);
+					
+				}catch(NumberFormatException e1) { //If the user introduces another thing that is not a number the app shows the next message and carry on executing
+					JOptionPane.showMessageDialog(null,"Se ha introducido un formato erroneo no se puede convertir!");
+					System.out.println(e1);
 				}
-			   
-				DecimalFormat df = new DecimalFormat("#.####");
-				String formatted = df.format(r); 
-				textFieldResult.setText(formatted);
+				
 			}
 		});
 	
